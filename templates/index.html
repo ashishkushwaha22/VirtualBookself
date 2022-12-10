@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Virtual Bookshelf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/c500dd204d.js" crossorigin="anonymous"></script>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+
+        <section class="colored-section" id="title">
+
+            <div class="container-fluid">
+        
+            <!-- Nav Bar -->
+        
+            <nav class="navbar navbar-expand-lg navbar-dark">
+        
+                <a class="navbar-brand" href="">cupBoard</a>
+        
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="#books">Books</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+        
+                </div>
+            </nav>
+        
+        
+            <!-- Title -->
+        
+            <div class="row">
+        
+                <div class="col-lg-6">
+                <h1 class="big-heading">Let's read....</h1>
+                <a href="{{url_for('add')}}">
+                    <button type="button" class="btn btn-outline-light btn-lg download-button"><i class="fa-sharp fa-solid fa-plus"></i> Book</button>
+                </a>
+                </div>
+        
+                <div class="col-lg-6">
+                    <img class="title-image" src="{{ url_for('static',filename='bg3.jpeg') }}">
+                </div>
+        
+            </div>
+        
+            </div>
+        
+        </section>
+    
+
+        <div class="container-fluid" id="books">
+            <table class="table">
+                {% if all_books|length>0 %}
+                    <thead>
+                    <tr>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Handle</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Remove</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in all_books %}
+                            <tr>
+                                <td>{{book.title}}</td>
+                                <td>{{book.author}}</td>
+                                <td>{{book.rating}}/10</td>
+                                <td>
+                                    <a href="{{ url_for('edit', id=book.id) }}">
+                                        <button type="button" class="btn btn-primary btn-sm add-button">Edit</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('delete', id=book.id) }}">
+                                        <button type="button" class="btn btn-primary btn-sm add-button">Delete</button>
+                                    </a>
+                                </td>   
+                            </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                    {% else %}
+                        <section id="cta">
+
+                            <div class="container-fluid">
+                        
+                            <h3 class="big-heading">No Books Available !</h3>
+                            <a href="{{url_for('add')}}">
+                                <button type="button" class="btn btn-dark btn-lg download-button"><i class="fa-sharp fa-solid fa-plus"></i> Book</button>
+                            </a>
+                            </div>
+                        </section>
+                    {% endif %}
+            </table>
+
+        </div>
+        <!-- About -->
+
+        <section class="colored-section" id="about">
+
+            <div class="container-fluid">
+
+                <h5 class="section-heading">Meet the Team</h5>
+                <p>Major Project titled "Virtual Bookshelf" submitted in partial fullfillment of the requirment for the Degree of Bachlor in Electronics and Communication Engineering.</p>
+                <p>Submitted By-</p>
+                <table class="table table-color">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Enrollment No.</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Ashish Kushwaha</td>
+                        <td>0205EC191016</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Nayeema Bee</td>
+                        <td>0205EC191037</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+            </div>
+
+        </section>
+        
+        <!-- Footer -->
+
+        <footer class="white-section" id="footer">
+            <div class="container-fluid">
+            <i class="social-icon fab fa-facebook-f"></i>
+            <i class="social-icon fab fa-twitter"></i>
+            <i class="social-icon fab fa-instagram"></i>
+            <i class="social-icon fas fa-envelope"></i>
+            <p>© Copyright 2022 Ashish</p>
+            </div>
+        </footer>
+
+
+   
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+
+    
+
+</body>
+</html>
