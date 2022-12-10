@@ -1,4 +1,5 @@
 # VirtualBookself
+a virtual bookshelf is an online space that allows you to store the books you are reading or track the ones that you want to read in a virtual environment. A virtual bookshelf is a programmatic method to create an interactive bookshelf to store and read digital books online.
 
 Home![VB](https://user-images.githubusercontent.com/79715106/206867613-0ee78741-2562-42b8-bdc4-2c9cc0415dc1.png)
 
